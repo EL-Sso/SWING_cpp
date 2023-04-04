@@ -1,0 +1,82 @@
+#include <iostream>
+#include <cstdlib>//랜덤함수를 사용할 수 있게 해주는 헤더를 사용
+using namespace std;
+
+int main()
+{
+	int t;
+	int f;
+	int a;
+	int s;
+	int b;
+	int n;
+
+	srand(time(NULL));//시드값을 시간으로 정해서 실행 할때마다 다른 랜덤값이 나오도록함
+	n = rand() % 100;//랜덤값의 범위를 100개로 제한함
+	cout << "랜덤한 수: " << n << endl;
+
+	cout << "특정 배수 개수: ";
+	cin >> t;
+	cout << endl << endl;
+	cout << "1번째특정 배수: ";
+	cin >> f;
+	cout << endl << "<1번째 특정 배수만 출력하는 프로그램>" << endl;
+
+	for (int a = 1; a * f <= n; a++) {//출력되는 수가 랜덤값으로 출력된 숫자를 넘지 않게 설정
+		if (f * a % 2 == 1)
+			continue;                   //홀수가 나오면 출력하지 않고 짝수만 나오게 설정
+		cout << f * a << "  ";
+	}
+		
+
+	
+	cout << endl;
+	cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+	for (int a = 1; a <= n; a ++) {
+
+		if (a % f == 0)
+
+			continue;
+
+		cout << a << " ";
+	
+
+
+	}
+	cout << endl << endl;
+
+	cout << "2번째특정 배수: ";
+	cin >> s;
+
+	cout << endl << "<2번째 특정 배수만 출력하는 프로그램>" << endl;
+	for (int b = 1; b * s <= n; b++) {
+		if (s * b % 2 == 1)
+			continue;
+		cout << s * b << " ";
+	
+
+
+	}
+	cout << endl;
+
+	cout << "<특정 배수 제외 출력하는 프로그램>" << endl;
+	for (int b = 1; b <= n; b++) {
+
+		if (b % s == 0)
+
+
+			continue;
+
+		if (b > n) {
+			cout << " ";
+		}
+
+
+		cout << b << " ";
+
+
+	}
+
+		
+		
+	}
