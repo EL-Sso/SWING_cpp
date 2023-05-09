@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void myaccount(int a, int b, int c, int d) {
+
+	cout << "------------------ swing 계좌 정보 ------------------" << endl;
+	cout << "|   " << "예금" << "   |   " << "적금" << "   |   " << "주택청약" << "   |   " << "주식계좌" << "   |" << endl;
+	cout << "|   " << a << " | " << b << " | " << c << " | " << d << " | " << endl;
+	cout << "-----------------------------------------------------" << endl;
+
+}
+int total(int a, int b, int c, int d) {
+	int result = a + b + c + d;
+
+	return result;
+
+}
+
+
+int main(void) {
+	int n;//맨 처음 숫자 입력
+	char name[10];//회원가입 이름 문자열 입력
+	char id[8];//회원가입 아이디 문자열 입력
+	int pw = NULL;//회원가입 패스워드 초기화
+	char inid[10];//로그인 아이디 입력
+	int inpw = NULL;//로그인 패스워드
+	int m;
+
+
+	while (true) {
+		cout << "********** swing 은행 **********" << endl << endl;
+		cout << "1. 회원가입" << endl;
+		cout << "2. 로그인" << endl << endl;
+		cout << "번호를 입력하세요. >> ";
+		cin >> n;
+		if (n == 1) {
+			cout << "이름: ";
+			cin >> name;
+			cout << "아이디: ";
+			cin >> id;
+			cout << "비밀번호: ";
+			cin >> pw;
+			cout << endl << endl;
+			cout << "==== 회원가입 성공 ===="<<endl;
+
+			continue;
+		}
+		else if (n == 2) {
+
+			cout << "아이디: ";
+			cin >> inid;
+			cout << "비밀번호: ";
+			cin >> inpw;
+
+			if (id[0] == '\0' || pw == NULL)//입력한 아이디나 비밀번호가 없으면  {
+				cout << "회원가입이 되어있지 않습니다. 회원가입을 먼저 해주세요" << endl << endl;
+
+				continue;
+			}
+			else if (strcmp(inid, id) == 0 && inpw == pw) {
+				
+				cout << "==== 로그인 성공 ====";
+				cout << name << "님 환영합니다." << endl << endl;
+				while (true){
+					cout << "********** swing 자산 관리 서비스 **********" << endl;
+					cout << "1. 계좌 정보 출력\n" << "2. 총자산 출력\n" << "3. 로그아웃\n" << endl;
+					cout << "번호를 입력하세요 >>";
+					cin >> m;
+					cout << endl << endl;
+					if (m == 1) {
+						myaccount(5000, 4000, 0, 10);//함수 호출
+						continue;
+					}
+					else if (m == 2) {
+						int q = total(5000, 4000, 0, 10);//함수 
+						cout << "현재 swing 자산관리 서비스에 등록된 회원님의 총 자산은 " << q << "원 입니다.\n";
+
+					}
+					else if (m == 3) {
+						return 0;
+					}
+				}
+				
+
+
+			}
+			else {
+				cout << "아이디 또는 비밀번호가 일치하지 않습니다." << endl << endl;
+				continue;
+			}
+
+
+		}
+	}
+
+
+
+}
