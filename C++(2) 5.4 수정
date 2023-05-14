@@ -1,0 +1,107 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void myaccount(string bank_name[4], int innum[4]) {
+	cout << "------------------ swing 계좌 정보 ------------------" << endl;
+	cout << "|   " << bank_name[0] << "   |   " << bank_name[1]  << "   |   " << bank_name[2] << "   |   " << bank_name[3] << "   |" << endl;//문자의 배열을 이용해서 
+	cout << "|   " << innum[0] << "   |   " << innum[1] << "   |      " << innum[2] << "       |     " << innum[3] << "       |      " << endl;//숫자의 배열 이용해서 입력
+	cout << "-----------------------------------------------------" << endl<<endl;
+
+}
+int total(int num[4], int* p) {//배열과 포인터를 정의해서 
+	p=num;						//p에 num[0]의 주소값이 들어감
+	
+	int result =  *p + *(p + 1) + *(p + 2) + *(p + 3);//포인터를 이용해 배열의 요소로 접근
+
+	return result;
+
+}
+
+
+int main(void) {
+	int n;//맨 처음 숫자 입력
+	char name[10];//회원가입 이름 문자열 입력
+	char id[8];//회원가입 아이디 입력
+	int pw = NULL;//회원가입 패스워드 입력
+	char inid[10];//로그인 시 아이디 입려
+	int inpw = NULL;//로그인 시 패스워드 입력
+	int m;//로그인 성공 후 숫자 입력
+	int* p=0;//포인터로 배열 요소에 접근
+	string bank_name[4] = { "예금", "적금", "주택청약", "주식계좌" };
+	int innum[4] = { 5000,4000,0,10 };
+
+
+	while (true) {
+
+		cout << "********** swing 은행 **********" << endl << endl;
+		cout << "1. 회원가입" << endl;
+		cout << "2. 로그인" << endl << endl;
+		cout << "번호를 입력하세요. >> ";
+		cin >> n;
+		if (n == 1) {
+			cout << "이름: ";
+			cin >> name;
+			cout << "아이디: ";
+			cin >> id;
+			cout << "비밀번호: ";
+			cin >> pw;
+			cout << endl;
+			cout << "==== 회원가입 성공 ===="<<endl<<endl;
+
+			continue;
+		}
+		else if (n == 2) {
+
+			cout << "아이디: ";
+			cin >> inid;
+			cout << "비밀번호: ";
+			cin >> inpw;
+
+			if (id[0] == '\0' || pw == NULL) {
+				cout << "회원가입이 되어있지 않습니다. 회원가입을 먼저 해주세요" << endl << endl;
+
+				continue;
+			}
+			else if (strcmp(inid, id) == 0 && inpw == pw) {
+				
+				cout << "==== 로그인 성공 ===="<<endl;
+				cout << name << "님 환영합니다." << endl << endl;
+				while (true){
+					cout << "********** swing 자산 관리 서비스 **********" << endl;
+					cout << "1. 계좌 정보 출력\n" << "2. 총자산 출력\n" << "3. 로그아웃\n" << endl;
+					cout << "번호를 입력하세요 >>";
+					cin >> m;
+					cout << endl << endl;
+					if (m == 1) {
+						
+						myaccount(bank_name, innum);//첫번째 myaccount 함수 호출, 제일 위에 선언한 함수 두개에 main 에 선언한 걸 넣어서 호출함
+						continue;
+					}
+					else if (m == 2) {
+					
+						
+						int q = total(innum,p);//두번째 total 함수 호출
+
+						cout << "현재 swing 자산관리 서비스에 등록된 회원님의 총 자산은 " << q << "원 입니다.\n"<<endl;
+
+					}
+					else if (m == 3) {
+						return 0;
+					}
+				}
+				
+
+
+			}
+			else {
+				cout << "아이디 또는 비밀번호가 일치하지 않습니다." << endl << endl;
+				continue;
+			}
+
+
+		}
+	}
+
+
+
+}
